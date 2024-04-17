@@ -39,6 +39,6 @@ For `PUT` method:
 
 - `400 Bad Request`: Indicates that required parameters are missing or invalid.
 - `401 Unauthorized`: Indicates that the verification code is incorrect.
-- `403 Forbidden`: Indicates that the entity MSISDN or username already exists.
+- `409 Conflict`: Indicates that the entity MSISDN or username already exists.
 - `405 Method Not Allowed`: Indicates that an unsupported HTTP method is used.
 - `500 Internal Server Error`: Indicates an unexpected error occurrence.

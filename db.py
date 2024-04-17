@@ -1,20 +1,12 @@
 """Module for connecting to a database."""
 
-import os
 import logging
 from peewee import MySQLDatabase, SqliteDatabase, DatabaseError
 from utils import ensure_database_exists
 
-from config import MYSQL_HOST, MYSQL_DB_NAME, MYSQL_PASSWORD, MYSQL_USER, SQLITE_FILE
+from config import MYSQL_HOST, MYSQL_DATABASE, MYSQL_PASSWORD, MYSQL_USER, SQLITE_FILE
 
 logger = logging.getLogger(__name__)
-
-mysql_database_name = os.environ.get("MYSQL_DATABASE")
-mysql_host = os.environ.get("MYSQL_HOST")
-mysql_password = os.environ.get("MYSQL_PASSWORD")
-mysql_user = os.environ.get("MYSQL_USER")
-
-sqlite_database_path = os.environ.get("SQLITE_DATABASE_PATH")
 
 
 def connect():
@@ -27,7 +19,7 @@ def connect():
     Raises:
         DatabaseError: If failed to connect to the database.
     """
-    if MYSQL_DB_NAME and MYSQL_HOST and MYSQL_USER and MYSQL_PASSWORD:
+    if MYSQL_DATABASE and MYSQL_HOST and MYSQL_USER and MYSQL_PASSWORD:
         return connect_to_mysql()
 
     if SQLITE_FILE:
@@ -36,7 +28,7 @@ def connect():
     raise ValueError("No database configuration found.")
 
 
-@ensure_database_exists(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB_NAME)
+@ensure_database_exists(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE)
 def connect_to_mysql():
     """
     Connects to the MySQL database.
@@ -49,7 +41,7 @@ def connect_to_mysql():
     """
     try:
         db = MySQLDatabase(
-            MYSQL_DB_NAME,
+            MYSQL_DATABASE,
             user=MYSQL_USER,
             password=MYSQL_PASSWORD,
             host=MYSQL_HOST,

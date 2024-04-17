@@ -31,8 +31,8 @@ def ensure_database_exists(host, user, password, database_name):
                     host=host, user=user, password=password
                 ) as connection:
                     with connection.cursor() as cursor:
-                        sql = "CREATE DATABASE IF NOT EXISTS %s"
-                        cursor.execute(sql, (database_name))
+                        sql = "CREATE DATABASE IF NOT EXISTS " + database_name
+                        cursor.execute(sql)
 
                 logger.info(
                     "Database %s created successfully (if it didn't exist)",
@@ -40,6 +40,8 @@ def ensure_database_exists(host, user, password, database_name):
                 )
             except pymysql.Error as error:
                 logger.error("Failed to create database: %s", error)
+                raise error
+
             return func(*args, **kwargs)
 
         return wrapper

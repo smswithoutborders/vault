@@ -9,8 +9,8 @@ from config import (
     TWILIO_ACCOUNT_SID,
     TWILIO_AUTH_TOKEN,
     TWILIO_PHONE_NUMBER,
-    CUSTOM_OWNERSHIP_API_KEY,
-    CUSTOM_OWNERSHIP_API_URL,
+    CUSTOM_VERIFICATION_API_URL,
+    CUSTOM_VERIFICATION_API_KEY,
 )
 
 logger = logging.getLogger(__name__)
@@ -36,8 +36,8 @@ class ProveOfOwnership:
 
     def __init__(self):
         """Initialize the ProveOfOwnership."""
-        self.api_key = CUSTOM_OWNERSHIP_API_KEY
-        self.api_url = CUSTOM_OWNERSHIP_API_URL
+        self.api_key = CUSTOM_VERIFICATION_API_KEY
+        self.api_url = CUSTOM_VERIFICATION_API_URL
         self.twilio_account_sid = TWILIO_ACCOUNT_SID
         self.twilio_auth_token = TWILIO_AUTH_TOKEN
         self.twilio_phone_number = TWILIO_PHONE_NUMBER

@@ -10,8 +10,7 @@
 
 - **URL:** `/api/v1/entities`
 - **Methods:** `POST`, `PUT`
-- **Description:** This endpoint facilitates the creation of an entity along
-  with associated credentials.
+- **Description:** This endpoint facilitates the creation of an entity.
 
 #### Request:
 
